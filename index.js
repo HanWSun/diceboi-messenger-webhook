@@ -82,10 +82,17 @@ function handleMessage(sender_psid, received_message) {
   
     // Check if the message contains text
     if (received_message.text) {    
-  
-      // Create the payload for a basic text message
-      response = {
-        "text": `You sent the message: "${received_message.text}". Now send me an image!`
+      let command = received_message.text;
+      var pieces = command.split(" ");
+      if (pieces[0] === "roll") {
+        response = {
+          "text": `rolling dice!`
+        }
+      } else {
+        // Create the payload for a basic text message
+        response = {
+          "text": `Sorry, I don't recognize the command: "${received_message.text}"`
+        }
       }
     }  
     
